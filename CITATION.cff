@@ -1,0 +1,38 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: SIaD Tool
+message: ' If you are using this software, please cite it using the metadata from this file. '
+type: software
+authors:
+  - given-names: Luis A.
+    family-names: Garcia-Reyes
+    email: luis.reyes@upc.edu
+    affiliation: CITCEA-UPC
+    orcid: 'https://orcid.org/0000-0001-6413-4014'
+repository-code: 'https://github.com/luisangelgare/FD_Scanning_Tool.git'
+abstract: >-
+  This open-access, frequency-domain (FD) scanning tool
+  offers a comprehensive solution for multi-sequence system
+  identification, using series voltage and parallel current
+  perturbation strategies. This methodology directly
+  identifies system functions in the target reference
+  sequence, effectively mitigating challenges associated
+  with mirror and coupling frequencies. Designed for
+  multi-platform deployment, the tool is implemented in
+  MATLAB/Simulink and Python/PSCAD environments, bridging
+  critical gaps in accessibility and practical
+  implementation. It delivers a robust, versatile framework
+  tailored to the needs of academia, industry, and grid
+  operators, facilitating advanced stability and
+  interactions analysis in modern power systems.
+keywords:
+  - electromagnetic transients
+  - frequency-domain analysis
+  - impedance-based analysis
+  - impedance identification
+  - stability analysis
+  - voltage-sourced converters
+license: GPL-3.0
+version: '1.0'
