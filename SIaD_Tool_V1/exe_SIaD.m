@@ -3,10 +3,10 @@
 %% Centre of Technological Innovation in Static Converters and Drives (CITCEA)
 %% Doctoral Program in Electrical Engineering
 %% Developed by: Luis Angel Garcia Reyes, MSc
-%% Q&A please mail to: luis.reyes@upc.edu
+%% Q&C please mail to: luis.reyes@upc.edu
 
 %% How to use the "Stability and Interaction assessment in
-%% frequency-Domain (SIaD)" tool for modern power systems 
+%% frequency-Domain (SIaD)" tool for modern power systems? 
 
 clear all;
 clc;
@@ -16,27 +16,28 @@ clc;
 program='Your_Project_Name.slx'; % Simulink program selection
 model='Your_Project_Name'; % Main canvas name of your project (same as program usually)
 Tinit=6; % Initialization time (arbitray for select the steady state)
-fs=1; % Sampling frequency for FTT (specify the value in Hz for minimal freq)
+fs=1; % Resolution frequency for FTT (specify the value in Hz for minimal freq)
 delta_t=25E-6; % Fixed step time
-% --- Specify the frequency vector for single-tone perturbations
+%%% -----------------------------------------------------------------------
+% Frequency band selection: choose one and comment the other
+% --- Specify the frequency vector for SINGLE-TONE perturbations
 fd0=unique(round(logspace(0,log10((1/delta_t)/4),3)));  % Perturbation frequencies in Hz
-% --- Specify the frequency band for multi-tone or PRBS perturbations
-% fd0=[0.001 6*50];  % Frequency band in Hz
+% --- Specify the frequency band for MULTI-TONE or PRBS perturbations
+% fd0=[0.001 6*50];  % Frequency band in Hz (RECOMMENDED 6 TIMES THE FUNDAMENTAL)
+%%% -----------------------------------------------------------------------
 
 %% Steady state and disturbance sources data
 
 f0=50; % Fundamental base frequency
-w=2*pi*f0; % Base angular frequency (rad/s)
-Sbase=2.75E6; % Base power (VSC or System to idenfify)
+Sbase=2.75E6; % Base power (where the tool is connected)
 Vbase=1; % Base voltage (V)
-Vpeak=(Vbase/sqrt(3))*sqrt(2); % Fundamental peak voltage at the connection
 Vq_ss=0; % q-component steady state voltage at bus under analysis
 Vd_ss=0; % d-component steady state voltage at bus under analysis
-Ipeak=Sbase/Vpeak; % Fundamental peak current through the link
+theta_ss=0; % Steady state angle at bus under analysis
 Iq_ss=0; % q-component steady state current at link under analysis
 Id_ss=0; % d-component steady state current at link under analysis
-Vperturbation=0.03; % Percentage of nominal voltage perturbation
-Iperturbation=0.03; % Percentage of nominal current perturbation
+Vperturbation=0.01; % Percentage of nominal voltage perturbation
+Iperturbation=0.01; % Percentage of nominal current perturbation
 
 %% Optional features if a linear model is available
 
@@ -78,10 +79,10 @@ linear=0;
 
 %% Insert here your file with your system initialization data (without run)
 
-%------------------
+%%% -----------------------------------------------------------------------
 % Here is your code for initizalization
 Your_Initialization_Code;
-%------------------
+%%% -----------------------------------------------------------------------
 
 % Loading the FDs main code...
 FDScanning;
@@ -97,3 +98,6 @@ PMModule;
 
 % Loading the Passivity assessment Module
 PAModule;
+
+%%% -----------------------------------------------------------------------
+% Save your matrices here in the format you desire!

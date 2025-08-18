@@ -27,6 +27,7 @@
 %% Preliminar parameters based on the simulation settings
 
 fd=0; % set initial disturbance frequency
+w=2*pi*f0; % Base angular frequency (rad/s)
 fsampling=round(1/delta_t); % Sampling frequency for the simulation 
 Tobs0=1/fs; % Total time window
 t_w1=Tinit; % Starting time window
@@ -38,6 +39,8 @@ time_vector=(t_w1:delta_t:t_w2)'; % Time vector for the disturbance
 samples_window=length(time_vector); % Ensure samples is an integer
 Rsource=1E-6; % Fundamental series resistance (suggested to avoid errors)
 phi=(2/3)*pi; % Phase of 120º between phases
+Vpeak=(Vbase/sqrt(3))*sqrt(2); % Fundamental peak voltage at the connection
+Ipeak=Sbase/Vpeak; % Fundamental peak current through the link
 Vdist_value=Vperturbation*Vpeak; % Voltage disturbance value
 Idist_value=Iperturbation*Ipeak; % Current disturbance value
 dist_time=dist_time_ss; % Set the first disturbance time for steady state
@@ -145,6 +148,7 @@ Vd_ss=out.Vdq_ss(end-10,1);
 Vq_ss=out.Vdq_ss(end-10,2);
 Id_ss=out.Idq_ss(end-10,1);
 Iq_ss=out.Idq_ss(end-10,2);
+Theta_ss=out.Theta_ss(end-10,1);
 dist_time=dist_time_f;
 switch scanner_selector
     case 1
