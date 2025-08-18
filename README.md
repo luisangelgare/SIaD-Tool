@@ -56,7 +56,7 @@ This tool is **experimental** and under **active development**. We encourage use
 
 3. Copy and follow the parameter settings of the `exe_FDScanningTool.m` program into your project directory.
 
-4. Refer to the **Manual_V2_SIaD_Tool.pdf** for the details about the configuration and installation process.
+4. Refer to the **Manual_V3_SIaD-Tool.pdf** for the details about the configuration and installation process.
 
 ### Examples will be available soon!
 
