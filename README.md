@@ -8,7 +8,8 @@ The **SIaD Tool** has been developed as part of the **MSCA-ADOreD** project, fun
 ---
 
 ## 🚨 Important Notice
-This tool is **experimental** and under **active development**. We encourage users to report any issues and contribute to its improvement.
+- This tool is **experimental** and under **active development**. We encourage users to report any issues and contribute to its improvement.
+- Since the tool is under continuous development, for the time being and until further notice, the Python/PSCAD version of the tool is currently unavailable.
 
 ---
 
