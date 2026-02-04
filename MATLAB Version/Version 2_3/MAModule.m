@@ -1,24 +1,35 @@
-%% Technical University of Catalonia (UPC)
-%% Higher Technical School of Industrial Engineering of Barcelona (ETSEIB)
-%% Centre of Technological Innovation in Static Converters and Drives (CITCEA)
-%% Doctoral Program in Electrical Engineering
-%% Developed by: Luis Angel Garcia Reyes, MSc
-%% Eigenvalue analysis tool for impedance-based analysis
-
-% GNU General Public License v3.0 (GPL-3.0)
+%  =============================================================================
+%   SIaD-Tool: Stability & Interaction assessment in the frequency-Domain Tool
+%   ---------------------------------------------------------------------------
+%  Technical University of Catalonia (UPC)
+%  ETSEIB – CITCEA-UPC
+%  Developed by: Luis Angel Garcia Reyes, MSc
+ 
+% Description:
+%     Comprehensive frequency-domain tool for small-signal stability
+%     and interaction assessment in modern power systems.
+ 
+% License:
+% CC-BY-NC-ND 4.0
+% Attribution-NonCommercial-NoDerivatives 4.0 International 
 % Copyright (C) 2025 Luis Angel Garcia Reyes, UPC-MSCA-ADOreD
 % Email: luis.reyes@upc.edu
-% This program is free software: you can redistribute it and/or modify it 
-% under the terms of the GNU General Public License as published by the 
-% Free Software Foundation, either version 3 of the License, or (at your 
-% option) any later version.
-% This program is distributed in the hope that it will be useful, but 
-% WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
-% or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License 
-% for more details.
-% You should have received a copy of the GNU General Public License along 
-% with this program. If not, see <https://www.gnu.org/licenses/>.
+% This work is licensed under the Creative Commons 
+% Attribution‑NonCommercial‑NoDerivatives 4.0 International License.
+% You are free to copy and redistribute this material in any medium or format,
+% provided that you give appropriate credit to the original author.
 
+% You may NOT use this material for commercial purposes.
+% You may NOT distribute modified versions of this material; only verbatim
+% copies are permitted under this license.
+ 
+% This work is provided “as is”, without any warranty of any kind, either 
+% expressed or implied, including but not limited to the warranties of 
+% merchantability, fitness for a particular purpose, or non‑infringement.
+ 
+% A copy of the full license is available at:
+% https://creativecommons.org/licenses/by-nc-nd/4.0/
+ 
 % This work has received funding from the ADOreD project
 % under the European Union’s Horizon Europe Research and 
 % Innovation Programme under the Marie Skłodowska-Curie 
