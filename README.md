@@ -1,18 +1,18 @@
 
-# SIaD Tool
+# SIaD-Tool
 
-Welcome to the **Stability and Interactions assessment in the frequency-Domain (SIaD)** tool for modern power system applications. This free-access, multi-platform tool is implemented in **MATLAB/Simulink** and **Python/PSCAD** environments.
+Welcome to the **Stability and Interactions assessment in the frequency-Domain Tool (SIaD-Tool)** for modern power system applications. This free-access, multi-platform tool is implemented in **MATLAB/Simulink** and **Python/PSCAD** environments.
 
 The **SIaD Tool** has been developed as part of the **MSCA-ADOreD** project, funded by the European Union’s Horizon Europe Research and Innovation Programme under the **Marie Skłodowska-Curie grant agreement No. 101073554**.
 
 ---
 
 ## ✅ Validation and Citation Guidelines 
-The **SIaD Tool** has been validated and documented in the following scientific publication. Users must **cite this work** in any academic, scientific, or industrial document where the tool is used, following the terms of the **Creative Commons CC‑BY‑NC‑ND 4.0 license** under which the SIaD Tool is distributed. 
+The **SIaD-Tool** has been validated and documented in the following scientific publication. Users must **cite this work** in any academic, scientific, or industrial document where the tool is used, following the terms of the **Creative Commons CC‑BY‑NC‑ND 4.0 license** under which the SIaD-Tool is distributed. 
 
 <div style="background-color:#000000; color:white; padding:18px; border-radius:10px; font-family:monospace; font-size:14px; line-height:1.4;">
 
-<b>BibTeX Citation (SIaD Tool)</b>
+<b>BibTeX Citation (SIaD-Tool)</b>
 
 @misc{CITCEA-SIaD-Tool,<br>
 &nbsp;&nbsp;&nbsp;&nbsp;title={SIaD-Tool: A Comprehensive Frequency-Domain Tool for Small-Signal Stability and Interaction Assessment in Modern Power Systems},<br>
@@ -29,7 +29,7 @@ The **SIaD Tool** has been validated and documented in the following scientific 
 
 ### 🔗 GitHub Repository
 
-The SIaD Tool repository, including citation instructions and licensing details, is available at:
+The SIaD-Tool repository, including citation instructions and licensing details, is available at:
 
 **https://github.com/luisangelgare/SIaD-Tool**
 
@@ -57,7 +57,7 @@ A complete example for each version of the tool has been added inside the **Exam
 1. **Two-level voltage source converter connected to the grid (for MATLAB version)**  
 2. **High Voltage Direct Current (HVDC) benchmark system (for PSCAD version)**
 
-These examples illustrate the complete workflow and recommended usage of the SIaD Tool in both MATLAB and PSCAD environments.
+These examples illustrate the complete workflow and recommended usage of the SIaD-Tool in both MATLAB and PSCAD environments.
 
 ---
 
