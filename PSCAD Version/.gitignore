@@ -1,0 +1,33 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# PSCAD temporary files
+*.snp
+*.out
+*.log
+*.inf
+*.tmp
+*.cfg
+*.pscx_backup
+*.pslx_backup
+
+# PSCAD workspace cache
+*.xsd
+*.bak
+*.err
+
+# Results folders
+Results/
+Output/
