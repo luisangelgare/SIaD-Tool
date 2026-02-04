@@ -1,0 +1,29 @@
+# MATLAB temporary files
+*.asv
+*.m~
+*.mex*
+*.autosave
+
+# Simulink cache
+slprj/
+sccprj/
+simcache/
+*.slxc
+
+# Code generation
+codegen/
+*_ert_rtw/
+*_grt_rtw/
+
+# Backup files
+*.bak
+
+# Workspace and session files
+*.mat
+*.mdl.autosave
+*.slx.autosave
+
+# Reports
+*.xml
+*.log
+*.txt
