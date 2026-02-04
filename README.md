@@ -12,7 +12,7 @@ The **SIaD-Tool** has been validated and documented in the following scientific 
 
 <div style="background-color:#000000; color:white; padding:18px; border-radius:10px; font-family:monospace; font-size:14px; line-height:1.4;">
 
-<b>BibTeX Citation (SIaD-Tool)</b>
+<b>BibTeX Citation (SIaD Tool)</b>
 
 @misc{CITCEA-SIaD-Tool,<br>
 &nbsp;&nbsp;&nbsp;&nbsp;title={SIaD-Tool: A Comprehensive Frequency-Domain Tool for Small-Signal Stability and Interaction Assessment in Modern Power Systems},<br>
@@ -21,11 +21,11 @@ The **SIaD-Tool** has been validated and documented in the following scientific 
 &nbsp;&nbsp;&nbsp;&nbsp;eprint={2601.05519},<br>
 &nbsp;&nbsp;&nbsp;&nbsp;archivePrefix={arXiv},<br>
 &nbsp;&nbsp;&nbsp;&nbsp;primaryClass={eess.SY},<br>
-&nbsp;&nbsp;&nbsp;&nbsp;url={https://arxiv.org/abs/2601.05519}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;url={<a href="https://arxiv.org/abs/2601.05519" style="color:#4DA3FF;">https://arxiv.org/abs/2601.05519</a>}<br>
 }
 </div>
 
-
+---
 
 ### 🔗 GitHub Repository
 
