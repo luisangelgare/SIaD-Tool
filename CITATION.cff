@@ -18,8 +18,7 @@ repository-code: 'https://github.com/luisangelgare/SIaD-Tool'
 abstract: >-
   SIaD Tool: A Comprehensive Frequency-Domain Tool for
   Small-Signal Stability and Interaction Assessment in
-  Modern Power Systems developed by CITCEA-UPC as part of
-  the MSCA-ADOreD project.
+  Modern Power Systems.
 keywords:
   - electromagnetic transients
   - frequency-domain analysis
@@ -27,6 +26,6 @@ keywords:
   - impedance identification
   - stability analysis
   - voltage source converters
-license: GPL-3.0
-version: '1.0'
-date-released: '2025-08-16'
+license: CC BY-NC-ND 4.0
+version: '2.0'
+date-released: '2026-02-04'
