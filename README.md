@@ -7,59 +7,54 @@ The **SIaD Tool** has been developed as part of the **MSCA-ADOreD** project, fun
 
 ---
 
+## ✅ Validation and Citation Guidelines 
+The **SIaD Tool** has been validated and documented in the following scientific publication. Users must **cite this work** in any academic, scientific, or industrial document where the tool is used, following the terms of the **Creative Commons CC‑BY‑NC‑ND 4.0 license** under which the SIaD Tool is distributed. 
+
+@misc{CITCEA-SIaD-Tool,
+      title={SIaD-Tool: A Comprehensive Frequency-Domain Tool for Small-Signal Stability and Interaction Assessment in Modern Power Systems}, 
+      author={Luis A. Garcia-Reyes and Oriol Gomis-Bellmunt and Eduardo Prieto-Araujo and Vinícius A. Lacerda and Marc Cheah-Mañe},
+      year={2026},
+      eprint={2601.05519},
+      archivePrefix={arXiv},
+      primaryClass={eess.SY},
+      url={https://arxiv.org/abs/2601.05519}
+}
+
+
+### 🔗 GitHub Repository
+
+The SIaD Tool repository, including citation instructions and licensing details, is available at:
+
+**https://github.com/luisangelgare/SIaD-Tool**
+
+---
+
 ## 🚨 Important Notice
 - This tool is **experimental** and under **active development**. We encourage users to report any issues and contribute to its improvement.
-- Since the tool is under continuous development, for the time being and until further notice, the Python/PSCAD version of the tool is currently unavailable.
+- Since the tool is under continuous development, many capabilities might not be available at the moment you access this repository.
 
 ---
 
-## 📋 Requirements
+## 📋 Requirements and Installation
 
-### For MATLAB/Simulink Version:
-- **MATLAB**: Version 2022b or newer.
+The full list of requirements and installation steps can be found in the manual of each version of the tool:
 
-### For Python/PSCAD Version:
-- **Python**: Version 3.12.7.
-- **PSCAD/EMTDC**: Version 5.0.2.
-
-### Recommended Hardware (For Optimal Performance):
-- **Processor**: Intel Core i5 or higher.
-- **RAM**: 8 GB or more.
+- For the MATLAB/Simulink version: **Manual_V2_SIaD_Tool_MATLAB.pdf**
+- For the Python/PSCAD version: **Manual_V2_SIaD_Tool_PSCAD.pdf**
 
 ---
 
-## ⚙️ Installation
+## 📘 Examples
 
-### For Python/PSCAD:
+A complete example for each version of the tool has been added inside the **Examples** folder:
 
-1. Clone the repository:
-   git clone https://github.com/luisangelgare/FD-Scanning-Tool.git
+1. **Two-level voltage source converter connected to the grid (for MATLAB version)**  
+2. **High Voltage Direct Current (HVDC) benchmark system (for PSCAD version)**
 
-2. Copy and use the "Frequency Domain Scanner" component in your PSCAD project:
-   - Open your PSCAD canvas.
-   - Use `Paste Special > Paste Transfer` to insert the component into your main project.
+These examples illustrate the complete workflow and recommended usage of the SIaD Tool in both MATLAB and PSCAD environments.
 
-3. Place the `FDScanningTool.py` file in the same directory as your PSCAD project and follow the parameter and initialization instructions provided in the file.
-
-4. Refer to the examples included in the repository for detailed usage instructions.
-5. For the moment, just voltage perturbation and single-tone strategy is available in PSCAD.
-
-### For MATLAB/Simulink:
-
-1. Clone the repository:
-   git clone https://github.com/luisangelgare/FD-Scanning-Tool.git
-
-2. Copy the "Frequency Domain Scanner" block to your Simulink workspace:
-   - Add the `powergui` block to your Simulink model.
-   - Configure the step time and simulation time in the **Configuration Parameters**.
-   - Set the solver to **Ode1**.
-   - Enable **Accelerator Mode** in the simulation settings.
-
-3. Copy and follow the parameter settings of the `exe_FDScanningTool.m` program into your project directory.
-
-4. Refer to the **Manual_V3_SIaD-Tool.pdf** for the details about the configuration and installation process.
-
-### Examples will be available soon!
+---
 
 ## 🚨 Important Advice
- Recommended to Use first the MATLAB version in order to understand the operating steps of the tool.
+Recommended to use first the MATLAB version in order to understand the operating steps of the tool.
+
