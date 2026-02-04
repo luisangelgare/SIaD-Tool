@@ -10,15 +10,21 @@ The **SIaD Tool** has been developed as part of the **MSCA-ADOreD** project, fun
 ## ✅ Validation and Citation Guidelines 
 The **SIaD Tool** has been validated and documented in the following scientific publication. Users must **cite this work** in any academic, scientific, or industrial document where the tool is used, following the terms of the **Creative Commons CC‑BY‑NC‑ND 4.0 license** under which the SIaD Tool is distributed. 
 
-@misc{CITCEA-SIaD-Tool,
-      title={SIaD-Tool: A Comprehensive Frequency-Domain Tool for Small-Signal Stability and Interaction Assessment in Modern Power Systems}, 
-      author={Luis A. Garcia-Reyes and Oriol Gomis-Bellmunt and Eduardo Prieto-Araujo and Vinícius A. Lacerda and Marc Cheah-Mañe},
-      year={2026},
-      eprint={2601.05519},
-      archivePrefix={arXiv},
-      primaryClass={eess.SY},
-      url={https://arxiv.org/abs/2601.05519}
+<div style="background-color:#000000; color:white; padding:18px; border-radius:10px; font-family:monospace; font-size:14px; line-height:1.4;">
+
+<b>BibTeX Citation (SIaD Tool)</b>
+
+@misc{CITCEA-SIaD-Tool,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;title={SIaD-Tool: A Comprehensive Frequency-Domain Tool for Small-Signal Stability and Interaction Assessment in Modern Power Systems},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;author={Luis A. Garcia-Reyes and Oriol Gomis-Bellmunt and Eduardo Prieto-Araujo and Vinícius A. Lacerda and Marc Cheah-Mañe},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;year={2026},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;eprint={2601.05519},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;archivePrefix={arXiv},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;primaryClass={eess.SY},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;url={https://arxiv.org/abs/2601.05519}<br>
 }
+</div>
+
 
 
 ### 🔗 GitHub Repository
