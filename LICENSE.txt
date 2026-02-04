@@ -1,39 +1,48 @@
-GNU General Public License v3.0 (GPL-3.0)
+Creative Commons Attribution–NonCommercial–NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 
-Copyright (C) 2025 Luis Angel Garcia Reyes MSCA-ADOreD
+Copyright (C) 2025 Luis Angel Garcia Reyes — MSCA-ADOreD
 Email: luis.reyes@upc.edu
 
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+This work is licensed under the Creative Commons Attribution–NonCommercial–NoDerivatives 4.0 International License (CC BY-NC-ND 4.0).
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+You are free to share this work — copy and redistribute it in any medium or format — under the following terms:
 
-You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
+1. Attribution (BY): You must give appropriate credit, provide a link to the license, and indicate if changes were made.
+2. NonCommercial (NC): You may not use the material for commercial purposes.
+3. NoDerivatives (ND): If you remix, transform, or build upon the material, you may not distribute the modified material.
 
----
+This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+A copy of the full license text is available at:
+https://creativecommons.org/licenses/by-nc-nd/4.0/
+
+------------------------------------------------------------
 Additional Information
+------------------------------------------------------------
 
 Purpose
 
-The tool developed under this repository is intended for the identification and analysis of power system models using both Matlab/Simulink and Python/PSCAD. It includes custom blocks and code for automating the calculation processes of system identification.
+The tool provided in this repository is designed for the identification, analysis, and frequency-domain assessment of power system models using both MATLAB/Simulink and Python/PSCAD environments. It includes custom blocks, scripts, and automated routines to support system identification, stability evaluation, and interaction analysis in modern power systems.
 
 Contributions
 
-Contributions are welcome. If you find any bugs, or if you would like to propose new features or improvements, feel free to open an issue or submit a pull request.
+Contributions are welcome. If you encounter bugs, have suggestions, or wish to propose improvements, feel free to open an issue or submit a pull request. Note that due to the NoDerivatives clause of the license, modified versions of the software cannot be redistributed, but improvements may be proposed for integration into the main project.
 
 License Summary
 
-The software in this repository is licensed under the GNU General Public License v3.0 (GPL-3.0). You are free to:
+The software in this repository is licensed under the Creative Commons CC BY-NC-ND 4.0 license. You are allowed to:
 
-- Use, modify, and distribute the software.
-- Distribute copies of the modified software under the same license.
+- Use and share the software for non-commercial purposes.
+- Redistribute the original, unmodified software.
+- Cite and reference the software in academic or research work.
 
-However, if you distribute the software (or modified versions), you must:
+However, you may not:
 
-- Provide a copy of the source code or an offer to make it available.
-- Include this license in all copies or substantial portions of the software.
-- Keep the software under the same license.
+- Use the software for commercial purposes.
+- Distribute modified versions of the software.
+- Remove or alter attribution notices.
 
-This ensures that the software remains free for everyone to use, study, and improve.
+This licensing model ensures that the tool remains freely accessible for research and educational use, while preserving authorship integrity and preventing unauthorized commercial exploitation.
 
-For further details on the license, refer to the full text at: https://www.gnu.org/licenses/gpl-3.0.html
+For full legal details, refer to:
+https://creativecommons.org/licenses/by-nc-nd/4.0/
