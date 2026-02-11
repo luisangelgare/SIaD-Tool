@@ -314,9 +314,8 @@ def _plot_mimo_nyquist(frequencies, eigenvalues, show_critical_point=True):
     ax.set_ylabel(r"Im($\lambda$)", fontsize=14)
 
     # ============================================================
-    # AUTO‑AJUSTE DE ESCALAS SEGÚN LOS DATOS
+    # AUTO‑AJUSTE DE ESCALAS SEGÚN LOS DATOS + PUNTO CRÍTICO
     # ============================================================
-    # Tomamos todas las partes reales e imaginarias
     re_vals = np.concatenate([
         ordered_eigs[0, :].real,
         ordered_eigs[0, :].real,
@@ -330,23 +329,56 @@ def _plot_mimo_nyquist(frequencies, eigenvalues, show_critical_point=True):
         -ordered_eigs[1, :].imag
     ])
 
-    # Calculamos límites con un pequeño margen
-    margin = 0.05
-    re_min, re_max = re_vals.min(), re_vals.max()
-    im_min, im_max = im_vals.min(), im_vals.max()
+    # Incluir también el punto crítico (-1, 0) en el cálculo de límites
+    re_min_data, re_max_data = re_vals.min(), re_vals.max()
+    im_min_data, im_max_data = im_vals.min(), im_vals.max()
 
-    dx = (re_max - re_min) * margin
-    dy = (im_max - im_min) * margin
+    re_min = min(re_min_data, -1.0)
+    re_max = max(re_max_data, -1.0)
+    im_min = min(im_min_data, 0.0)
+    im_max = max(im_max_data, 0.0)
+
+    margin = 0.05
+    dx = (re_max - re_min) * margin if re_max > re_min else 1.0
+    dy = (im_max - im_min) * margin if im_max > im_min else 1.0
 
     ax.set_xlim([re_min - dx, re_max + dx])
     ax.set_ylim([im_min - dy, im_max + dy])
     # ============================================================
 
     # Main trajectories
-    h1, = ax.plot(ordered_eigs[0, :].real,  ordered_eigs[0, :].imag,  "-", color="r", linewidth=2.5)
-    h2, = ax.plot(ordered_eigs[0, :].real, -ordered_eigs[0, :].imag,  "-", color="m", linewidth=2.5)
-    h3, = ax.plot(ordered_eigs[1, :].real,  ordered_eigs[1, :].imag,  "-", color="b", linewidth=2.5)
-    h4, = ax.plot(ordered_eigs[1, :].real, -ordered_eigs[1, :].imag,  "-", color="k", linewidth=2.5)
+    h1, = ax.plot(
+        ordered_eigs[0, :].real,
+        ordered_eigs[0, :].imag,
+        "-",
+        color="r",
+        linewidth=2.5,
+        label=r"$\lambda_{1}\ [0,+\infty]$",
+    )
+    h2, = ax.plot(
+        ordered_eigs[0, :].real,
+        -ordered_eigs[0, :].imag,
+        "-",
+        color="m",
+        linewidth=2.5,
+        label=r"$\lambda_{1}\ [-\infty,0]$",
+    )
+    h3, = ax.plot(
+        ordered_eigs[1, :].real,
+        ordered_eigs[1, :].imag,
+        "-",
+        color="b",
+        linewidth=2.5,
+        label=r"$\lambda_{2}\ [0,+\infty]$",
+    )
+    h4, = ax.plot(
+        ordered_eigs[1, :].real,
+        -ordered_eigs[1, :].imag,
+        "-",
+        color="k",
+        linewidth=2.5,
+        label=r"$\lambda_{2}\ [-\infty,0]$",
+    )
 
     if show_critical_point:
         ax.plot(-1, 0, marker="p", markersize=7, color="g", linewidth=2.5)
@@ -372,8 +404,10 @@ def _plot_mimo_nyquist(frequencies, eigenvalues, show_critical_point=True):
     ax_inset.set_xlim([X1, X2])
     ax_inset.set_ylim([Y1, Y2])
 
+    # Leyenda ordenada: primero ramas negativas, luego positivas
     ax.legend(handles=[h2, h1, h4, h3], loc="upper left", fontsize=10)
 
     return fig
+
 
 

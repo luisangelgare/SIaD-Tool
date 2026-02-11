@@ -35,32 +35,6 @@ from pathlib import Path
 # =============================================================================
 
 def Run_Modal_Analysis(fd0, Ysys1, Ysys2, subsys_labels, outcomes_dir):
-    """
-    Perform dq0 modal analysis for the combined admittance Y = Y1 + Y2.
-
-    Parameters
-    ----------
-    fd0 : array-like
-        Frequency vector (Hz).
-    Ysys1 : dict
-        Dictionary mapping freq -> 2×2 complex matrix.
-    Ysys2 : dict
-        Dictionary mapping freq -> 2×2 complex matrix.
-    subsys_labels : tuple of str
-        Names of the two subsystems (default: ("Sys1", "Sys2")).
-    outcomes_dir : str
-        Folder where results will be saved.
-
-    Returns
-    -------
-    dict with:
-        - eigenvalues
-        - modal_impedance
-        - participation_factors
-        - critical_mode_idx
-        - dominant_subsystem
-    """
-
     fd0 = np.asarray(fd0)
     N = len(fd0)
 
@@ -80,18 +54,20 @@ def Run_Modal_Analysis(fd0, Ysys1, Ysys2, subsys_labels, outcomes_dir):
     participation_factors = np.zeros((2, 2, N))
     critical_mode_idx = np.zeros(N, dtype=int)
     dominant_subsystem = np.empty(N, dtype=object)
+    Z_modes = np.zeros((2, N), dtype=complex)  # eigenvalores modales de impedancia
 
     # -------------------------------------------------------------------------
-    # 3. Plot eigenvalues in complex plane
+    # 3. Figura: Re(Z_modo) vs frecuencia (MA_Eigenvalues.pdf)
     # -------------------------------------------------------------------------
     Path(outcomes_dir).mkdir(exist_ok=True)
     fig1, ax1 = plt.subplots(figsize=(8, 6))
 
-    ax1.grid(True)
-    ax1.set_xlabel("Re(λ)")
-    ax1.set_ylabel("Im(λ)")
-    ax1.set_title("Eigenvalues of Y(f) across Frequencies")
-    ax1.axvline(0, linestyle="--", color="r", linewidth=2, label="Re(λ)=0 boundary")
+    ax1.grid(True, which="both", linestyle="--", linewidth=0.7)
+    ax1.set_xscale("log")
+    ax1.set_xlabel("f (Hz)")
+    ax1.set_ylabel(r"Re($Z_{\mathrm{mode}}$)")
+    ax1.set_title("Real part of modal impedances vs frequency")
+    ax1.axhline(0, linestyle="--", color="r", linewidth=2, label="Re(Z) = 0 boundary")
 
     # -------------------------------------------------------------------------
     # 4. Modal analysis loop
@@ -99,14 +75,14 @@ def Run_Modal_Analysis(fd0, Ysys1, Ysys2, subsys_labels, outcomes_dir):
     for i in range(N):
         Yf = Y_full[:, :, i]
 
-        # Right eigenvectors V and eigenvalues D
-        eigvals, V = np.linalg.eig(Yf)
-        W = np.linalg.inv(V)  # Left eigenvectors
+        eigvals, V = np.linalg.eig(Yf)   # Right eigenvectors
+        W = np.linalg.inv(V)             # Left eigenvectors
 
         eigenvalues[:, i] = eigvals
 
-        # Modal impedance = |1 / λ|
-        modal_impedance[:, i] = np.abs(1.0 / eigvals)
+        # Modal impedance (compleja)
+        Z_modes[:, i] = 1.0 / eigvals
+        modal_impedance[:, i] = np.abs(Z_modes[:, i])
 
         # Participation factors = |W' .* V|
         participation_factors[:, :, i] = np.abs(W.T * V)
@@ -124,38 +100,38 @@ def Run_Modal_Analysis(fd0, Ysys1, Ysys2, subsys_labels, outcomes_dir):
         else:
             dominant_subsystem[i] = "Undetermined"
 
-        # Plot eigenvalues
-        ax1.plot(eigvals.real, eigvals.imag, "o", markersize=7,
-                 label=f"f = {fd0[i]:.2f} Hz" if i == 0 else None)
-
-    ax1.legend(loc="best", fontsize=8)
+    # Plot de Re(Z_modo) vs frecuencia (dos modos)
+    ax1.plot(fd0, Z_modes[0, :].real, "-", color="b", linewidth=2.0, label=r"Mode 1")
+    ax1.plot(fd0, Z_modes[1, :].real, "-", color="g", linewidth=2.0, label=r"Mode 2")
+    ax1.legend(loc="best", fontsize=9)
     fig1.tight_layout()
 
-    # Save eigenvalue plot
     pdf1 = Path(outcomes_dir) / "MA_Eigenvalues.pdf"
     fig1.savefig(pdf1, format="pdf", bbox_inches="tight")
     plt.close(fig1)
 
     # -------------------------------------------------------------------------
-    # 5. Heatmap of participation factors for critical mode
+    # 5. Participation factors: curvas normalizadas vs frecuencia
+    #     (MA_ParticipationFactors.pdf)
     # -------------------------------------------------------------------------
-    heatmap_data = np.zeros((N, 2))
-    row_labels = [f"f = {f:.2f}" for f in fd0]
-
+    pf_norm = np.zeros((N, 2))
     for i in range(N):
-        heatmap_data[i, :] = participation_factors[critical_mode_idx[i], :, i]
+        pf = participation_factors[critical_mode_idx[i], :, i]
+        max_pf = np.max(pf)
+        pf_norm[i, :] = pf / max_pf if max_pf > 0 else 0.0
 
-    fig2, ax2 = plt.subplots(figsize=(7, 8))
-    im = ax2.imshow(heatmap_data, cmap="viridis", aspect="auto")
+    fig2, ax2 = plt.subplots(figsize=(8, 6))
+    ax2.grid(True, which="both", linestyle="--", linewidth=0.7)
 
-    ax2.set_xticks([0, 1])
-    ax2.set_xticklabels(["Input 1", "Input 2"])
-    ax2.set_yticks(range(N))
-    ax2.set_yticklabels(row_labels)
+    ax2.set_xscale("log")
+    ax2.set_xlabel("f (Hz)")
+    ax2.set_ylabel("Normalized participation factor")
+    ax2.set_title("Participation factors of critical mode vs frequency")
 
-    ax2.set_title("Participation Factors of Critical Mode")
-    fig2.colorbar(im, ax=ax2)
+    h_pf1, = ax2.plot(fd0, pf_norm[:, 0], "-", color="b", linewidth=2.0, label="System 1")
+    h_pf2, = ax2.plot(fd0, pf_norm[:, 1], "-", color="m", linewidth=2.0, label="System 2")
 
+    ax2.legend(handles=[h_pf1, h_pf2], loc="best", fontsize=9)
     fig2.tight_layout()
 
     pdf2 = Path(outcomes_dir) / "MA_ParticipationFactors.pdf"
@@ -185,8 +161,8 @@ def Run_Modal_Analysis(fd0, Ysys1, Ysys2, subsys_labels, outcomes_dir):
               f"{dominant_subsystem[i]:12} |")
 
     print("-" * 98)
-    print(f"---> Eigenvalue plot saved to: {pdf1}")
-    print(f"---> Participation heatmap saved to: {pdf2}")
+    print(f"---> Eigenvalue/impedance plot saved to: {pdf1}")
+    print(f"---> Participation factors plot saved to: {pdf2}")
     print("---> Modal analysis completed.\n")
 
     return {
@@ -196,4 +172,3 @@ def Run_Modal_Analysis(fd0, Ysys1, Ysys2, subsys_labels, outcomes_dir):
         "critical_mode_idx": critical_mode_idx,
         "dominant_subsystem": dominant_subsystem,
     }
-

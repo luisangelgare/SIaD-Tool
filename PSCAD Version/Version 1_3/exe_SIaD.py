@@ -131,7 +131,9 @@ ma_results = Run_Modal_Analysis(fd0,
                                 subsys_labels=("Sys1", "Sys2"),
                                 outcomes_dir=results_folder)
 
-PM_table = Run_Phase_Margins(fd0, Ysys1, Ysys2, scanner_selector)
+PM_table = Run_Phase_Margins(fd0, Ysys1, Ysys2, 
+                             scanner_selector,
+                             outcomes_dir=results_folder)
 
 PA_results = Run_Passivity_Analysis(fd0,
                                     Ysys1,

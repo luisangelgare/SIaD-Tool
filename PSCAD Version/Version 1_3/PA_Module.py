@@ -47,8 +47,10 @@ def Run_Passivity_Analysis(fd0, Ysys1, Ysys2, outcomes_dir):
     dict with:
         - lambda_min_sys1
         - lambda_min_sys2
+        - lambda_min_total
         - non_passive_ranges_sys1
         - non_passive_ranges_sys2
+        - non_passive_ranges_total
     """
 
     fd0 = np.asarray(fd0)
@@ -56,34 +58,36 @@ def Run_Passivity_Analysis(fd0, Ysys1, Ysys2, outcomes_dir):
 
     lambda_min_sys1 = np.zeros(N)
     lambda_min_sys2 = np.zeros(N)
+    lambda_min_total = np.zeros(N)
 
     # -------------------------------------------------------------------------
-    # 1. Compute minimum eigenvalues of P = Y + Yᴴ
+    # 1. Compute minimum eigenvalues of P = Y + Yᴴ for each system and combined
     # -------------------------------------------------------------------------
     for k, f in enumerate(fd0):
         Y1 = Ysys1[f]
         Y2 = Ysys2[f]
-    
+        Yt = Y1 + Y2
+
         P1 = Y1 + Y1.conj().T
         P2 = Y2 + Y2.conj().T
-    
-        # NOTE: Passivity index definition adapted from Z-Tool (Cifuentes et al., CC BY-NC-ND 4.0)
-        # PI(f) = 0.5 * min eigenvalue of (Y + Yᴴ)
+        Pt = Yt + Yt.conj().T
+
         lambda_min_sys1[k] = 0.5 * np.min(np.linalg.eigvals(P1).real)
         lambda_min_sys2[k] = 0.5 * np.min(np.linalg.eigvals(P2).real)
-
+        lambda_min_total[k] = 0.5 * np.min(np.linalg.eigvals(Pt).real)
 
     # -------------------------------------------------------------------------
     # 2. Detect non-passive ranges
     # -------------------------------------------------------------------------
     ranges1 = _detect_passivity_ranges(fd0, lambda_min_sys1, "System 1")
     ranges2 = _detect_passivity_ranges(fd0, lambda_min_sys2, "System 2")
+    rangesT = _detect_passivity_ranges(fd0, lambda_min_total, "Total System")
 
     # -------------------------------------------------------------------------
-    # 3. Plot and save PDF
+    # 3. Plot and save PDF (logarithmic X-axis)
     # -------------------------------------------------------------------------
     Path(outcomes_dir).mkdir(exist_ok=True)
-    fig = _plot_passivity(fd0, lambda_min_sys1, lambda_min_sys2)
+    fig = _plot_passivity(fd0, lambda_min_sys1, lambda_min_sys2, lambda_min_total)
 
     pdf_path = Path(outcomes_dir) / "PA_Passivity.pdf"
     fig.savefig(pdf_path, format="pdf", bbox_inches="tight")
@@ -94,21 +98,24 @@ def Run_Passivity_Analysis(fd0, Ysys1, Ysys2, outcomes_dir):
     # -------------------------------------------------------------------------
     print("---> Passivity analysis running...")
     print("\n---> Passivity Violation Summary:")
-    print("---------------------------------------------")
-    print("| System   | Frequency Range [Hz] | Status   |")
-    print("---------------------------------------------")
+    print("-----------------------------------------------------------")
+    print("| System        | Frequency Range [Hz]     | Status        |")
+    print("-----------------------------------------------------------")
 
     _print_ranges(ranges1, "System 1")
     _print_ranges(ranges2, "System 2")
+    _print_ranges(rangesT, "Total System")
 
-    print("---------------------------------------------")
+    print("-----------------------------------------------------------")
     print(f"---> Passivity plot saved to: {pdf_path}")
 
     return {
         "lambda_min_sys1": lambda_min_sys1,
         "lambda_min_sys2": lambda_min_sys2,
+        "lambda_min_total": lambda_min_total,
         "non_passive_ranges_sys1": ranges1,
         "non_passive_ranges_sys2": ranges2,
+        "non_passive_ranges_total": rangesT,
     }
 
 
@@ -117,9 +124,6 @@ def Run_Passivity_Analysis(fd0, Ysys1, Ysys2, outcomes_dir):
 # =============================================================================
 
 def _detect_passivity_ranges(fd0, eigvals, system_name):
-    """
-    Identify frequency intervals where λ_min(f) < 0 (non-passive).
-    """
     non_passive = eigvals < 0
     ranges = []
     start = None
@@ -138,33 +142,32 @@ def _detect_passivity_ranges(fd0, eigvals, system_name):
 
 
 def _print_ranges(ranges, system_name):
-    """
-    Print passivity violation ranges in table format.
-    """
     if not ranges:
-        print(f"| {system_name:<8} |     -     | Passive   |")
+        print(f"| {system_name:<13} |     -                  | Passive       |")
         return
 
     for r in ranges:
-        print(f"| {system_name:<8} | {r[0]:5.1f} to {r[1]:5.1f} | Non-Passive |")
+        print(f"| {system_name:<13} | {r[0]:7.1f} to {r[1]:7.1f} | Non-Passive   |")
 
 
-def _plot_passivity(fd0, lam1, lam2):
-    """
-    Create passivity plot showing λ_min(f) for both systems.
-    """
+def _plot_passivity(fd0, lam1, lam2, lamT):
     fig, ax = plt.subplots(figsize=(10, 6))
 
-    ax.grid(True)
+    ax.set_xscale("log")
+    ax.grid(True, which="both", linestyle="--", linewidth=0.7)
+
     ax.set_xlabel("Frequency (Hz)", fontsize=12)
     ax.set_ylabel("Minimum Eigenvalue λ_min", fontsize=12)
     ax.set_title("Passivity Evaluation via Minimum Eigenvalues", fontsize=14)
 
-    ax.plot(fd0, lam1, "-", color="b", linewidth=3, label="System 1")
-    ax.plot(fd0, lam2, "-", color="g", linewidth=3, label="System 2")
+    ax.plot(fd0, lam1, "-", color="b", linewidth=2.5, label="System 1")
+    ax.plot(fd0, lam2, "-", color="g", linewidth=2.5, label="System 2")
+    ax.plot(fd0, lamT, "-", color="m", linewidth=2.5, label="Total System")
+
     ax.plot(fd0, np.zeros_like(fd0), "--", color="r", linewidth=2, label="Passive Limit")
 
     ax.legend(fontsize=10)
     fig.tight_layout()
 
     return fig
+
