@@ -1,0 +1,14 @@
+<workspace name="VSC_Grid_Connected" version="5.0.2" crc="28329296">
+  <projects>
+    <project type="project" name="VSC_GFL_LAGR" filepath=".\VSC_GFL_LAGR.pscx" />
+  </projects>
+  <simulations />
+  <pmr />
+  <messagegrid expanded="">
+    <column name="Icon" />
+    <column name="Id" />
+    <column name="Component" />
+    <column name="Namespace" />
+    <column name="Description" />
+  </messagegrid>
+</workspace>
